@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <link type ="text/css" rel="styclesheet" id="dark-mode-custom-link">
+  <link type ="text/css" rel="styclesheet" id="dark-mode-general-link">
+  <style lang="en" type="text/css" id="dark-mode-custom-style"></style>
+  <style lang="en" type="text/css" id="dark-mode-native-style"></style>
+  <style lang="en" type="text/css" id="dark-mode-native-sheet"></style>
+  <head>
+    <title> Monty site :)</title>
+    <style type = "text/css" id ="opearUserStyle"></style>
+  </head>
+  <body>
+    <h1> MONTY SITE AHHHH <3 </h1>
+  </body>
+</html>
