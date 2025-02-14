@@ -8,13 +8,13 @@ canvas.height=window.innerHeight;
 let particles =[];
 
 function createParticles(){
-    for(let i =0; i<50; i++){
+    for(let i =0; i<75; i++){
         particles.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            size: Math.random * 3+1,
-            speedX: (Math.random -0.5)* 2,
-            speedY: (Math.random - 0.5) * 2
+            size: Math.random() * 3+1,
+            speedX: (Math.random() -0.5)* 2,
+            speedY: (Math.random() - 0.5) * 2
 
         });
     }
@@ -23,7 +23,7 @@ function createParticles(){
 function animateParticles(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     particles.forEach(p => {
-        ctx.fillStyle("#CE999B");
+        ctx.fillStyle = "#CE999B";
         ctx.beginPath();
         ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
         ctx.fill();
@@ -35,5 +35,5 @@ function animateParticles(){
     requestAnimationFrame(animateParticles);
 }
 
-createParticles;
-animateParticles;
+createParticles();
+animateParticles();
