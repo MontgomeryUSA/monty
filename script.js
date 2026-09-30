@@ -2,8 +2,13 @@ const canvas = document.createElement("canvas");
 document.body.appendChild(canvas);
 const ctx = canvas.getContext("2d");
 
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+function resizeCanvas(){
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+}
+
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
 let particles =[];
 
@@ -30,7 +35,7 @@ function animateParticles(){
         p.x += p.speedX;
         p.y += p.speedY;
         if(p.x <0|| p.x > canvas.width) p.speedX*=-1;
-        if(p.x <0|| p.y > canvas.height) p.speedY*=-1;
+        if(p.y <0|| p.y > canvas.height) p.speedY*=-1;
     });
     requestAnimationFrame(animateParticles);
 }
