@@ -3,27 +3,124 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Monty site </title>
+    <title>Julian Montgomery | Portfolio</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <div id="background-effect"></div>
-    <div class="content-box">
-      <h1>wueygfiwuegf </h1>
-      <p> tfyguieieufgwiegf </p>
-      <a href="https://vetconnect.monty.my"> Test</a>
-      <div class ="stuffs">
-        <h2> Placeholder for portfolio </h2>
-      </div>
-      <div class="contact">
-        <h2>Contact Info</h2>
-        <p> If you want to contact me, email me at MontgomeryUSA1@gmail.com</p>
-      </div>
-      
 
-      <p>weuygfwuyegfwuyegfwuyefgwuyegf</p>
-    </div>
+    <header class="content-box hero">
+      <h1>Julian Montgomery</h1>
+      <p class="tagline">Student developer building full-stack web apps, browser extensions, and tools that make other people's lives easier.</p>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <p class="content-box notice">Note: all of the projects below are currently deprecated because their backends are down. The code is still available to view.</p>
+
+        <article class="content-box project">
+          <span class="status">Deprecated &middot; backend offline</span>
+          <div class="project-header">
+            <h3>Promptwise</h3>
+            <span class="role">Chrome Extension</span>
+          </div>
+          <p>
+            Promptwise helps students write better AI prompts that encourage learning instead of
+            having the AI do the work for them. It injects a widget into ChatGPT, Claude, Gemini,
+            and Perplexity that intercepts a prompt before it's sent, scores it for clarity and
+            effectiveness, and rewrites it into a learning-focused version that builds reasoning
+            rather than producing a copyable assignment answer.
+          </p>
+          <ul class="highlights">
+            <li>Manifest V3 extension with a background service worker and content scripts</li>
+            <li>Uses the OpenAI API to return a structured JSON score, rewritten prompt, and feedback</li>
+            <li>Extracts prompt text from pasted images so screenshots of questions get rewritten too</li>
+            <li>Resizable in-page panel with small, medium, large, fullscreen, and sidebar layouts</li>
+          </ul>
+          <div class="tags">
+            <span>JavaScript</span><span>Chrome Extensions</span><span>OpenAI API</span><span>HTML/CSS</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/MontgomeryUSA/PW2" target="_blank" rel="noopener">View Code</a>
+          </div>
+        </article>
+
+        <article class="content-box project">
+          <span class="status">Deprecated &middot; backend offline</span>
+          <div class="project-header">
+            <h3>VetConnect</h3>
+            <span class="role">Real-time Web App</span>
+          </div>
+          <p>
+            VetConnect is a peer-support platform where veterans can connect and help each other.
+            Users create an account, message other members one-on-one in real time, and join
+            community rooms for group conversations, with a profile page that tracks their
+            VetConnect journey.
+          </p>
+          <ul class="highlights">
+            <li>Live direct messaging and community rooms powered by Socket.IO</li>
+            <li>Sign-up / sign-in flow and profile editing backed by a REST API</li>
+            <li>Private conversations and report tools available in every room</li>
+            <li>Responsive interface built with Tailwind CSS</li>
+          </ul>
+          <div class="tags">
+            <span>JavaScript</span><span>Socket.IO</span><span>REST API</span><span>Tailwind CSS</span>
+          </div>
+          <div class="links">
+            <a href="https://vetconnect.monty.my" target="_blank" rel="noopener">Live Site (frontend only)</a>
+            <a href="https://github.com/MontgomeryUSA/vetconnect" target="_blank" rel="noopener">View Code</a>
+          </div>
+        </article>
+
+        <article class="content-box project">
+          <span class="status">Deprecated &middot; backend offline</span>
+          <div class="project-header">
+            <h3>BuildIt</h3>
+            <span class="role">Team Leader &amp; Back-End Developer</span>
+          </div>
+          <p>
+            BuildIt is a cost-optimization platform for makers: upload a 3D model, label each part
+            with a material, and get the most cost-effective way to build it from real store
+            prices. I led a team of six and built the backend service that processes uploaded
+            models, calculates mesh volumes, and estimates material costs.
+          </p>
+          <ul class="highlights">
+            <li>FastAPI backend that parses .glb uploads and computes per-mesh volume with Trimesh</li>
+            <li>Matches each part to vendor pricing in a SQLite materials database</li>
+            <li>Puppeteer scrapers that collect product data from Home Depot and Lowe's</li>
+            <li>Three.js viewer for uploading, rotating, and labeling models in the browser</li>
+          </ul>
+          <div class="tags">
+            <span>Python</span><span>FastAPI</span><span>Trimesh</span><span>SQLite</span><span>Three.js</span><span>Puppeteer</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/MontgomeryUSA/BuildIt" target="_blank" rel="noopener">View Code</a>
+          </div>
+        </article>
+      </section>
+
+      <section id="about" class="content-box">
+        <h2>About Me</h2>
+        <p>
+          I'm a student developer who enjoys working across the whole stack, from backend
+          services and databases to the interfaces people actually use. My goal is to work in
+          computer engineering and build things that make other people's lives easier.
+        </p>
+      </section>
+
+      <section id="contact" class="content-box contact">
+        <h2>Contact Info</h2>
+        <p>If you want to contact me, email me at <a href="mailto:MontgomeryUSA1@gmail.com">MontgomeryUSA1@gmail.com</a></p>
+        <p><a href="https://github.com/MontgomeryUSA" target="_blank" rel="noopener">GitHub: MontgomeryUSA</a></p>
+      </section>
+    </main>
+
     <script src="script.js"></script>
   </body>
 </html>
- 
