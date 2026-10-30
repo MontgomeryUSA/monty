@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soon</title>
+    <style>
+      html { font-size: 18px; }
+      * { box-sizing: border-box; }
+      [hidden] { display: none !important; }
+      body {
+        margin: 0;
+        padding: 48px 16px;
+        background: #311E1E;
+        color: #76bfda;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1rem;
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+      .content-box {
+        background: rgba(50,50,50,0.8);
+        padding: 36px 32px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+        width: 100%;
+        max-width: 760px;
+        position: relative;
+        z-index: 1;
+      }
+      h1 { font-size: clamp(2.2rem, 6vw, 3.2rem); margin: 0 0 8px; }
+      .tagline { margin: 0 0 28px; font-size: 1.15rem; }
+      .label {
+        color: #CE999B;
+        font-size: 0.85rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        margin: 0 0 10px;
+      }
+      .count {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        max-width: 560px;
+        margin: 0 auto 20px;
+      }
+      .unit {
+        border: 1px solid #CE999B;
+        border-radius: 10px;
+        background: rgba(206,153,155,0.08);
+        padding: 14px 4px;
+      }
+      .num {
+        display: block;
+        font-size: clamp(2rem, 10vw, 3.4rem);
+        line-height: 1.1;
+        font-weight: bold;
+        color: #CE999B;
+        font-variant-numeric: tabular-nums;
+      }
+      .unit-label { display: block; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; }
+      .when { margin: 0; font-size: 0.95rem; }
+      @media (max-width: 600px) {
+        html { font-size: 17px; }
+        body { padding: 24px 16px; }
+        .content-box { padding: 26px 16px; }
+        .count { gap: 6px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="content-box">
+      <section id="before">
+        <h1>Something is shifting.</h1>
+        <p class="tagline">Pay attention.</p>
+        <p class="label">Begins in</p>
+        <div class="count" role="timer" aria-live="off">
+          <div class="unit"><span class="num" id="d">--</span><span class="unit-label">days</span></div>
+          <div class="unit"><span class="num" id="h">--</span><span class="unit-label">hours</span></div>
+          <div class="unit"><span class="num" id="m">--</span><span class="unit-label">minutes</span></div>
+          <div class="unit"><span class="num" id="s">--</span><span class="unit-label">seconds</span></div>
+        </div>
+        <p class="when" id="when"></p>
+      </section>
+      <section id="after" hidden>
+        <h1>It has begun.</h1>
+        <p class="tagline">Pay attention.</p>
+      </section>
+    </main>
+
+    <script>
+      // Start: Saturday, October 31, 2026 at 12:00 PM Eastern (EDT, UTC-4)
+      var START = new Date("2026-10-31T12:00:00-04:00");
+
+      function pad(n) { return n < 10 ? "0" + n : "" + n; }
+      function fmt(d, tz) {
+        try {
+          var o = { weekday: "long", month: "long", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" };
+          if (tz) o.timeZone = tz;
+          return new Intl.DateTimeFormat(undefined, o).format(d);
+        } catch (e) { return d.toString(); }
+      }
+      var et = fmt(START, "America/New_York"), local = fmt(START);
+      document.getElementById("when").textContent = et + (local !== et ? " (your time: " + local + ")" : "");
+
+      var timer = null;
+      function tick() {
+        var ms = START - Date.now();
+        if (ms <= 0) {
+          document.getElementById("before").hidden = true;
+          document.getElementById("after").hidden = false;
+          if (timer) clearInterval(timer);
+          return;
+        }
+        var s = Math.floor(ms / 1000);
+        document.getElementById("d").textContent = pad(Math.floor(s / 86400));
+        document.getElementById("h").textContent = pad(Math.floor(s % 86400 / 3600));
+        document.getElementById("m").textContent = pad(Math.floor(s % 3600 / 60));
+        document.getElementById("s").textContent = pad(s % 60);
+      }
+      timer = setInterval(tick, 250);
+      tick();
+
+      // Drifting particles, same as the main site
+      var canvas = document.createElement("canvas");
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext("2d");
+      function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+      resize();
+      window.addEventListener("resize", resize);
+      var particles = [];
+      for (var i = 0; i < 75; i++) {
+        particles.push({
+          x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+          size: Math.random() * 3 + 1,
+          vx: (Math.random() - 0.5) * 2, vy: (Math.random() - 0.5) * 2
+        });
+      }
+      (function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#CE999B";
+        particles.forEach(function (p) {
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        });
+        requestAnimationFrame(animate);
+      })();
+    </script>
+  </body>
+</html>
